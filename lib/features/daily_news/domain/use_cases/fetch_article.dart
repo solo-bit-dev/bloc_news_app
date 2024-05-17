@@ -3,10 +3,10 @@ import 'package:bloc_news_app/core/use_cases/usecase.dart';
 import 'package:bloc_news_app/features/daily_news/domain/entity/article_entity.dart';
 import 'package:bloc_news_app/features/daily_news/domain/repository/article_repository.dart';
 
-class GetArticleUseCase implements UseCase<DataState<List<ArticleEntity>>, void> {
+class FetchArticleUseCase implements UseCase<DataState<List<ArticleEntity>>, void> {
   final ArticleRepository _articleRepository;
 
-  GetArticleUseCase(this._articleRepository);
+  FetchArticleUseCase(this._articleRepository);
 
   @override
   Future<DataState<List<ArticleEntity>>> call({void params}) {
