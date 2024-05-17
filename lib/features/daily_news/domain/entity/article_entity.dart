@@ -1,18 +1,18 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:equatable/equatable.dart';
+ import 'package:equatable/equatable.dart';
 
-class ArticleEntity extends Equatable {
-  final int? id;
-  final String? author;
-  final String? title;
-  final String? description;
-  final String? url;
-  final String? urlToImage;
-  final String? publishedAt;
-  final String? content;
+class ArticleEntity extends Equatable{
+  // Source? source;
+  String? author;
+  String? title;
+  dynamic description;
+  String? url;
+  dynamic urlToImage;
+  DateTime? publishedAt;
+  dynamic content;
 
-  const ArticleEntity({
-    this.id,
+
+  ArticleEntity({
+    // this.source,
     this.author,
     this.title,
     this.description,
@@ -21,7 +21,16 @@ class ArticleEntity extends Equatable {
     this.publishedAt,
     this.content,
   });
-
+  
   @override
-  List<Object?> get props => [id, author, title, description, url, urlToImage, publishedAt, content];
+  List<Object?> get props => [
+    // source,
+    author,
+    title,
+    description,
+    url,
+    urlToImage,
+    publishedAt,
+    content,
+  ];
 }
