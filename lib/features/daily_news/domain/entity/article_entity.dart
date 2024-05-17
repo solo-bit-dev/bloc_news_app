@@ -1,7 +1,9 @@
  import 'package:equatable/equatable.dart';
 
+ part 'source_entity.dart';
+
 class ArticleEntity extends Equatable{
-  // Source? source;
+  SourceEntity? source;
   String? author;
   String? title;
   dynamic description;
@@ -12,7 +14,7 @@ class ArticleEntity extends Equatable{
 
 
   ArticleEntity({
-    // this.source,
+    this.source,
     this.author,
     this.title,
     this.description,
@@ -24,7 +26,7 @@ class ArticleEntity extends Equatable{
   
   @override
   List<Object?> get props => [
-    // source,
+    source,
     author,
     title,
     description,

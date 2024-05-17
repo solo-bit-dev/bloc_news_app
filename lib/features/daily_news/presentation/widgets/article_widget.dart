@@ -95,6 +95,14 @@ class ArticleWidget extends StatelessWidget {
               ),
             ),
 
+            // Source
+            Text(
+              article.source?.name ?? '',
+              style: const TextStyle(
+                fontSize: 12,
+              ),
+            ),
+
             // Date-time
             Row(
               children: [
