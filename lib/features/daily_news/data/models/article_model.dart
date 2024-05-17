@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bloc_news_app/features/daily_news/domain/entity/article_entity.dart';
 
 class ArticleModel extends ArticleEntity {
@@ -14,20 +12,7 @@ class ArticleModel extends ArticleEntity {
     String? content,
   });
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'author': author,
-      'title': title,
-      'description': description,
-      'url': url,
-      'urlToImage': urlToImage,
-      'publishedAt': publishedAt,
-      'content': content,
-    };
-  }
-
-  factory ArticleModel.fromMap(Map<String, dynamic> map) {
+  factory ArticleModel.fromJson(Map<String, dynamic> map) {
     return ArticleModel(
       id: map['id'] != null ? map['id'] as int : null,
       author: map['author'] != null ? map['author'] as String : null,
@@ -39,8 +24,4 @@ class ArticleModel extends ArticleEntity {
       content: map['content'] != null ? map['content'] as String : null,
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory ArticleModel.fromJson(String source) => ArticleModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
