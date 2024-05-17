@@ -2,6 +2,6 @@ abstract class RemoteArticleEvent {
   const RemoteArticleEvent();
 }
 
-class FetchArticles extends RemoteArticleEvent {
-  const FetchArticles();
+class FetchArticlesEvent extends RemoteArticleEvent {
+  const FetchArticlesEvent();
 }

@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:bloc_news_app/features/daily_news/domain/entity/article_entity.dart';
@@ -12,14 +13,14 @@ abstract class RemoteArticleState extends Equatable {
   List<Object?> get props => [articles, exception];
 }
 
-class RemoteArticleLoading extends RemoteArticleState {
-  const RemoteArticleLoading();
+class RemoteArticleLoadingState extends RemoteArticleState {
+  const RemoteArticleLoadingState();
 }
 
-class RemoteArticleLoaded extends RemoteArticleState {
-  const RemoteArticleLoaded({required List<ArticleEntity> articles}) : super(articles: articles);
+class RemoteArticleLoadedState extends RemoteArticleState {
+  const RemoteArticleLoadedState({required List<ArticleEntity> articles}) : super(articles: articles);
 }
 
-class RemoteArticleError extends RemoteArticleState {
-  const RemoteArticleError({required DioException exception}) : super(exception: exception);
+class RemoteArticleErrorState extends RemoteArticleState {
+  const RemoteArticleErrorState({required DioException exception}) : super(exception: exception);
 }

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<RemoteArticleBloc>(
-      create: (context) => sl<RemoteArticleBloc>()..add(const FetchArticles()),
+      create: (context) => sl<RemoteArticleBloc>()..add(const FetchArticlesEvent()),
       child: MaterialApp(
         theme: appTheme(),
         home: const DailyNews(),
