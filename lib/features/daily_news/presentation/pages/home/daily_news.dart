@@ -25,8 +25,6 @@ class DailyNews extends StatelessWidget {
   _buildBody() {
     return BlocBuilder<RemoteArticleBloc, RemoteArticleState>(
       builder: (context, state) {
-        print('state ::: $state');
-
         if (state is RemoteArticleLoading) {
           return const Center(
             child: CupertinoActivityIndicator(),
@@ -40,15 +38,12 @@ class DailyNews extends StatelessWidget {
         }
 
         if (state is RemoteArticleLoaded) {
-          print('State: ${state.articles?.length}');
-
           return ListView.builder(
             itemCount: state.articles?.length,
             itemBuilder: (context, index) {
               return ArticleWidget(
                 article: state.articles![index],
               );
-              return Text('Article $index');
             },
           );
         }
