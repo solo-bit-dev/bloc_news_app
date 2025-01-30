@@ -20,7 +20,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
         apiKey: apiKey,
         country: country,
         category: category,
-      );
+      );   
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
