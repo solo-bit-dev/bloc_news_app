@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc_news_app/features/daily_news/presentation/bloc/remote/remote_article_bloc.dart';
 import 'package:bloc_news_app/features/daily_news/presentation/bloc/remote/remote_article_state.dart';
 import 'package:bloc_news_app/features/daily_news/presentation/widgets/article_widget.dart';
@@ -32,6 +34,8 @@ class DailyNews extends StatelessWidget {
         }
 
         if (state is RemoteArticleErrorState) {
+          log('Error: ${state.exception?.error}');
+
           return const Center(
             child: Icon(Icons.refresh),
           );
