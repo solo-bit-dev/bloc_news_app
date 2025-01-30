@@ -3,17 +3,17 @@
  part 'source_entity.dart';
 
 class ArticleEntity extends Equatable{
-  SourceEntity? source;
-  String? author;
-  String? title;
-  dynamic description;
-  String? url;
-  dynamic urlToImage;
-  DateTime? publishedAt;
-  dynamic content;
+  final SourceEntity? source;
+  final String? author;
+  final String? title;
+  final dynamic description;
+  final String? url;
+  final dynamic urlToImage;
+  final DateTime? publishedAt;
+  final dynamic content;
 
 
-  ArticleEntity({
+  const ArticleEntity({
     this.source,
     this.author,
     this.title,

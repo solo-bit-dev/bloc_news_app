@@ -1,7 +1,8 @@
-import 'package:bloc_news_app/features/daily_news/domain/entity/article_entity.dart';
+import '../../domain/entity/article_entity.dart';
+import 'source_model.dart';
 
 class ArticleModel extends ArticleEntity {
-  ArticleModel({
+  const ArticleModel({
     super.source,
     super.author,
     super.title,
@@ -13,7 +14,7 @@ class ArticleModel extends ArticleEntity {
   });
 
   factory ArticleModel.fromJson(Map<String, dynamic> json) => ArticleModel(
-        source: json["source"] == null ? null : sourceFromJson(json["source"] as Map<String, dynamic>),
+        source: json["source"] == null ? null : SourceModel.fromJson(json["source"] as Map<String, dynamic>),
         author: json["author"],
         title: json["title"],
         description: json["description"],
@@ -21,10 +22,5 @@ class ArticleModel extends ArticleEntity {
         urlToImage: json["urlToImage"],
         publishedAt: json["publishedAt"] == null ? null : DateTime.parse(json["publishedAt"]),
         content: json["content"],
-      );
-
-  static sourceFromJson(Map<String, dynamic> json) => SourceEntity(
-        id: json["id"],
-        name: json["name"],
       );
 }

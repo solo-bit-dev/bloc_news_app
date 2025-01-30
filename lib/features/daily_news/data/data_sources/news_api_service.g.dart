@@ -6,12 +6,13 @@ part of 'news_api_service.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _NewsApiService implements NewsApiService {
   _NewsApiService(
     this._dio, {
     this.baseUrl,
+    this.errorLogger,
   }) {
     baseUrl ??= 'https://newsapi.org/v2/';
   }
@@ -19,6 +20,8 @@ class _NewsApiService implements NewsApiService {
   final Dio _dio;
 
   String? baseUrl;
+
+  final ParseErrorLogger? errorLogger;
 
   @override
   Future<HttpResponse<List<ArticleModel>>> getNewsArticles({
@@ -35,7 +38,7 @@ class _NewsApiService implements NewsApiService {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<List<ArticleModel>>>(Options(
+    final _options = _setStreamType<HttpResponse<List<ArticleModel>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -50,15 +53,26 @@ class _NewsApiService implements NewsApiService {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    List<ArticleModel> value = _result.data!['articles'].map<ArticleModel>((dynamic i) => ArticleModel.fromJson(i as Map<String, dynamic>)).toList();
-    final httpResponse = HttpResponse(value, _result);
+        )));
+    final _result = await _dio.fetch<Map<String,dynamic>>(_options);
+    late List<ArticleModel> _value;
+    try {
+      _value = (_result.data!['articles'] as List<dynamic>)
+          .map((dynamic i) => ArticleModel.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    final httpResponse = HttpResponse(_value, _result);
 
     return httpResponse;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
-    if (T != dynamic && !(requestOptions.responseType == ResponseType.bytes || requestOptions.responseType == ResponseType.stream)) {
+    if (T != dynamic &&
+        !(requestOptions.responseType == ResponseType.bytes ||
+            requestOptions.responseType == ResponseType.stream)) {
       if (T == String) {
         requestOptions.responseType = ResponseType.plain;
       } else {

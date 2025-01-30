@@ -1,15 +1,13 @@
 part of 'article_entity.dart';
 
 class SourceEntity extends Equatable {
-  String? id;
-  String? name;
+  final String? id;
+  final String? name;
 
-  SourceEntity({
+  const SourceEntity({
     this.id,
     this.name,
   });
-
-
 
   @override
   List<Object?> get props => [id, name];
