@@ -3,13 +3,9 @@ import 'package:floor/floor.dart';
 import '../../domain/entity/article_entity.dart';
 import 'source_model.dart';
 
-@Entity(tableName: 'article')
+@Entity(tableName: 'article', primaryKeys: ['source'])
 class ArticleModel extends ArticleEntity {
-  @PrimaryKey(autoGenerate: true)
-  final int? id;
-
   const ArticleModel({
-    this.id,
     super.source,
     super.author,
     super.title,
