@@ -1,12 +1,10 @@
 import 'package:floor/floor.dart';
 
 import '../../domain/entity/article_entity.dart';
-import '../data_sources/local/converters/source_entity_converter.dart';
 import 'source_model.dart';
 
 @Entity(tableName: 'article')
 class ArticleModel extends ArticleEntity {
-
   @PrimaryKey(autoGenerate: true)
   final int? id;
 
@@ -31,5 +29,16 @@ class ArticleModel extends ArticleEntity {
         urlToImage: json["urlToImage"],
         publishedAt: json["publishedAt"] == null ? null : DateTime.parse(json["publishedAt"]),
         content: json["content"],
+      );
+
+  factory ArticleModel.fromEntity(ArticleEntity entity) => ArticleModel(
+        source: entity.source == null ? null : SourceModel.fromEntity(entity.source!),
+        author: entity.author,
+        title: entity.title,
+        description: entity.description,
+        url: entity.url,
+        urlToImage: entity.urlToImage,
+        publishedAt: entity.publishedAt,
+        content: entity.content,
       );
 }

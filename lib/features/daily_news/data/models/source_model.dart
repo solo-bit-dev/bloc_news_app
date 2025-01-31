@@ -15,4 +15,9 @@ class SourceModel extends SourceEntity {
         "id": id,
         "name": name,
       };
+
+  factory SourceModel.fromEntity(SourceEntity entity) => SourceModel(
+        id: entity.id,
+        name: entity.name,
+      );
 }
