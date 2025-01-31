@@ -27,7 +27,7 @@ Future<void> initializeDependencies() async {
   );
 
   sl.registerSingleton<ArticleRepository>(
-    ArticleRepositoryImpl(sl<NewsApiService>()),
+    ArticleRepositoryImpl(sl<NewsApiService>(), sl<AppDatabase>()),
   );
 
   // use cases
