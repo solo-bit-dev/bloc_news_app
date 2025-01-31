@@ -1,3 +1,4 @@
+import 'package:bloc_news_app/features/daily_news/presentation/bloc/local/local_article_bloc.dart';
 import 'package:get_it/get_it.dart';
 // ignore: depend_on_referenced_packages
 import 'package:dio/dio.dart';
@@ -37,18 +38,21 @@ Future<void> initializeDependencies() async {
     FetchArticleUseCase(sl<ArticleRepository>()),
   );
 
+  sl.registerSingleton<GetSavedArticleUseCase>(
+    GetSavedArticleUseCase(sl<ArticleRepository>()),
+  );
   sl.registerSingleton<SaveArticleUseCase>(
     SaveArticleUseCase(sl<ArticleRepository>()),
   );
   sl.registerSingleton<RemoveArticleUseCase>(
     RemoveArticleUseCase(sl<ArticleRepository>()),
   );
-  sl.registerSingleton<GetSavedArticleUseCase>(
-    GetSavedArticleUseCase(sl<ArticleRepository>()),
-  );
 
   // blocs
   sl.registerFactory<RemoteArticleBloc>(
     () => RemoteArticleBloc(sl<FetchArticleUseCase>()),
+  );
+  sl.registerFactory<LocalArticleBloc>(
+    () => LocalArticleBloc(sl<GetSavedArticleUseCase>(), sl<SaveArticleUseCase>(), sl<RemoveArticleUseCase>()),
   );
 }
