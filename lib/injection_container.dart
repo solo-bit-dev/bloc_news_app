@@ -8,9 +8,16 @@ import 'package:bloc_news_app/features/daily_news/domain/repository/article_repo
 import 'package:bloc_news_app/features/daily_news/domain/use_cases/fetch_article.dart';
 import 'package:bloc_news_app/features/daily_news/presentation/bloc/remote/remote_article_bloc.dart';
 
+import 'features/daily_news/data/data_sources/local/app_database.dart';
+
 final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
+
+  // create database
+  final database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+  sl.registerSingleton<AppDatabase>(database);
+
   // dio
   sl.registerSingleton<Dio>(Dio());
 
