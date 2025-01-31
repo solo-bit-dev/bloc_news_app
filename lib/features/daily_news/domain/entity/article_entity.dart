@@ -6,11 +6,11 @@ class ArticleEntity extends Equatable{
   final SourceEntity? source;
   final String? author;
   final String? title;
-  final dynamic description;
+  final String? description;
   final String? url;
-  final dynamic urlToImage;
+  final String? urlToImage;
   final DateTime? publishedAt;
-  final dynamic content;
+  final String? content;
 
 
   const ArticleEntity({

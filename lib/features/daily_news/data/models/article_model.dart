@@ -1,8 +1,17 @@
+import 'package:floor/floor.dart';
+
 import '../../domain/entity/article_entity.dart';
+import '../data_sources/local/converters/source_entity_converter.dart';
 import 'source_model.dart';
 
+@Entity(tableName: 'article')
 class ArticleModel extends ArticleEntity {
+
+  @PrimaryKey(autoGenerate: true)
+  final int? id;
+
   const ArticleModel({
+    this.id,
     super.source,
     super.author,
     super.title,
